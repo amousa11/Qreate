@@ -26,7 +26,7 @@ class CodeScannervarwController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scanner = MTBBarcodeScanner(previewView: self.previewView)
-        self.usersNamesOfPeopleThatAreHere = [String]()
+        self.usersNamesOfPeopleThatAreHere = [""]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -85,10 +85,12 @@ class CodeScannervarwController: UIViewController {
             if identifier == "unwindToMyEvent" {
                 if let dest = segue.destination as? MyEventViewController {
                     if dest.scanned != nil {
-                        if dest.scanned.keys.contains(eid!) {
-                            dest.scanned[eid!]! += self.usersNamesOfPeopleThatAreHere!
-                        } else {
-                            dest.scanned[eid!] = self.usersNamesOfPeopleThatAreHere
+                        if eid != nil {
+                            if dest.scanned.keys.contains(eid!) {
+                                dest.scanned[eid!]! += self.usersNamesOfPeopleThatAreHere!
+                            } else {
+                                dest.scanned[eid!] = self.usersNamesOfPeopleThatAreHere
+                            }
                         }
                     }
                     
